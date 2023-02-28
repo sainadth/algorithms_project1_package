@@ -22,6 +22,8 @@ def comp(x, y, col):
 #Quick Sort
 def pivot_element(arr):
     #CODE For identifiying the pivot element
+    pivot = arr[len(arr) // 2]
+
     return pivot
 def quicksort(arr, columns):
     """
@@ -41,6 +43,18 @@ def quicksort(arr, columns):
     if len(arr) <= 1:
         return arr
     pivot = pivot_element(arr)
+    m = len(arr) // 2
+    i = -1
+    for j in range(len(arr)):
+        if comp(arr[i], pivot, columns):
+            i += 1
+            (arr[i], arr[j]) = (arr[j], arr[i])
+    (arr[i + 1], arr[m]) = (arr[m], arr[i + 1])
+
+    partition = i + 1
+    quicksort(arr[:partition], columns)
+    quicksort(arr[partition + 1:], columns)
+
     #NEED TO CODE
     #Implement Quick Sort Algorithm
     #return Sorted array
@@ -111,6 +125,7 @@ def shell_sort(arr, columns):
     columns: a list of integers representing the columns to sort the 2D array on
     Finally, returns the final sorted 2D array.
     """
+
     #NEED TO CODE
     #Implement Shell Sort Algorithm
     #return Sorted array
@@ -129,6 +144,21 @@ def merge(left, right, columns):
     with the remaining elements of the other sub-array and returns the result as the final
     sorted 2D array.
     """
+    i = j = 0
+    res = []
+    while(i < len(left) and j < len(right)):
+        if(comp(left[i], left[j]), columns):
+            res.append(left[i])
+            i += 1
+        else:
+            res.append(right[j])
+            j += 1
+    
+    while(i < len(left)):
+        res.append(left[i])
+    
+    while(j < len(right)):
+        res.append(right[j])
     #NEED TO CODE
     #Implement merge Logic
     #return Sorted array
