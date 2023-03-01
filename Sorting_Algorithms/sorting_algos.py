@@ -1,6 +1,7 @@
 import csv
 import time
 import json
+import pandas
 
 """
 Note : For test cases 7-10, you need to extract the required data (filter on conditions mentioned above)
@@ -49,29 +50,30 @@ def data_filtering(filelocation, num):
          if num == 4 -> filter data based on primary Names which start with vowel character.
 
     """
-    df = csv.reader("imdb_dataset.csv")# Load the imdb_dataset.csv dataset
+    df = pandas.read_csv("imdb_dataset.csv")# Load the imdb_dataset.csv dataset
     print(df)
     if(num==1):
         #NEED TO CODE
         #Implement your logic here for Filtering data based on years (years in range 1941 to 1955)
-        df_year = filter(lambda p : yearFilter(p[3]), df)#Store your filtered dataframe here
+        df_year = df.loc[df['startYear'].isin([i for i in range(1941, 1956)])]
+        #filter(lambda p : yearFilter(p[3]), df)#Store your filtered dataframe here
         df_year.reset_index(drop=True).to_csv("imdb_years_df.csv", index=False)
-
     if(num==2):
-        #NEED TO CODE
-        #Implement your logic here for Filtering data based on genres (genres are either ‘Adventure’ or ‘Drama’)
-        df_genres = filter(lambda p : p[5] in ["Adventure", "Drama"], df)#Store your filtered dataframe here
+        #NEED TO CODE 
+        #Implement your logic here for Filtering data based on genres (genres are either ‘Adventure’ Adventureor ‘Drama’)
+        df_genres = df.loc[df['genres'].isin(['Adventure', 'Drama'])]#Store your filtered dataframe here
         df_genres.reset_index(drop=True).to_csv("imdb_genres_df.csv", index=False)
     if(num==3):
         #NEED TO CODE
         #Implement your logic here for Filtering data based on primaryProfession (if primaryProfession column contains
         #substrings {‘assistant_director’, ‘casting_director’, ‘art_director’, ‘cinematographer’} )
-        df_professions = filter(lambda p : professionFilter(p[16]), df)#Store your filtered dataframe here
+        df_professions = df.loc[df['primaryProfession'].isin(['assistant_director', 'casting_director', 'art_director', 'cinematographer'])]#Store your filtered dataframe here
         df_professions.reset_index(drop=True).to_csv("imdb_professions_df.csv", index=False)
     if(num==4):
         #NEED TO CODE
         #Implement your logic here for Filtering data based on primary Names which start with vowel character.
-        df_vowels = filter(lambda p : nameFilter(p[13]), df)#Store your filtered dataframe here
+        df_vowels = df.loc[df['primaryName'][0].isin(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])]
+        #Store your filtered dataframe here
         df_vowels.reset_index(drop=True).to_csv("imdb_vowel_names_df.csv", index=False)
 
 
@@ -115,6 +117,17 @@ def selection_sort(arr, columns):
     columns: a list of integers representing the columns to sort the 2D array on
     Finally, returns the final sorted 2D array.
     """
+    print(arr)
+    for i in range(len(arr)):
+        minInd = i
+        for j in range(i + 1, len(arr)):
+            if(comp(x=arr[j], y=arr[minInd], col=columns)):
+                minInd = j
+        if(minInd != i):
+            temp = arr[i]
+            arr[i] = arr[minInd]
+            arr[minInd] = temp
+    print(arr)
     #NEED TO CODE
     #Implement Selection Sort Algorithm
     #return Sorted array
@@ -174,6 +187,21 @@ def shell_sort(arr, columns):
     columns: a list of integers representing the columns to sort the 2D array on
     Finally, returns the final sorted 2D array.
     """
+    h = 0
+    while(h < len(arr)):
+        h = h * 3 + 1
+    
+    while(h > 0):
+        for i in range(h, len(arr)):
+            t = arr[i]
+            for j in range(i, 0, -h):
+                if(j > h and arr[j - h] > t):
+                    if(comp(arr[j], arr[j - h]), columns):
+                        arr[j] = arr[j - h]
+            arr[j] = t
+        h = (h - 1)// 3
+
+
     #NEED TO CODE
     #Implement Shell Sort Algorithm
     #return Sorted array
@@ -194,6 +222,21 @@ def merge(left, right, columns):
     with the remaining elements of the other sub-array and returns the result as the final
     sorted 2D array.
     """
+    i = j = 0
+    res = []
+    while(i < len(left) and j < len(right)):
+        if(comp(left[i], left[j]), columns):
+            res.append(left[i])
+            i += 1
+        else:
+            res.append(right[j])
+            j += 1
+    
+    while(i < len(left)):
+        res.append(left[i])
+    
+    while(j < len(right)):
+        res.append(right[j])
     #NEED TO CODE
     #Implement merge Logic
     #return Sorted array
@@ -207,8 +250,10 @@ def merge_sort(data, columns):
     #NEED TO CODE
     if len(data) <= 1:
         return data
-    mid = #Mid value
+    mid = len(data)//2#Mid value
     #Need to Code
+    left = merge_sort(data[:mid], columns)
+    right = merge_sort(data[mid:], columns)
     #Implement Merge Sort Algorithm
     #return Sorted array
     return merge(left, right, columns)
@@ -225,6 +270,16 @@ def insertion_sort(arr, columns):
     # columns: store the column indices from the dataframe.
     Finally, returns the final sorted 2D array.
     """
+    print(arr)
+    for i in range(len(arr)):
+        j = i
+        while(j > 0):
+            if(comp(x=arr[j], y=arr[j - 1], col=columns)):
+                temp = arr[j]
+                arr[j] = arr[j - 1]
+                arr[j - 1] = temp
+    print(arr)
+
     #NEED TO CODE
     #Insertion Sort Implementation
     #Return : List of tconst values which are obtained after sorting the dataset.
@@ -273,15 +328,18 @@ def sorting_algorithms(file_path, columns, select):
     #NEED TO CODE
     #Read imdb_dataset.csv
     #write code here Inorder to read imdb_dataset
-    df= #read imdb_dataset.csv data set using pandas library
+    df= pandas.read_csv("imdb_dataset.csv")
+    #read imdb_dataset.csv data set using pandas library
 
-    column_vals = #convert the columns strings passed from the test cases in the form of indices according to
+    column_vals = [0].extend([column_names.index(i) for i in columns])
+    #convert the columns strings passed from the test cases in the form of indices according to
                   #the imdb_dataset indices for example tconst column is in the index 0. Apart from the testcase
                   #Columns provided you must also include 0 column in the first place of list in column_vals
                   #for example if you have provided with columns {'startYear', 'primaryTitle'} which are in the
                   #indices {3,1}. So the column_vals should look like [0,3,1].
 
-    data = #convert the dataframes into list of sublists, each sublist consists of values corresponds to
+    data = df.values.tolist()
+    #convert the dataframes into list of sublists, each sublist consists of values corresponds to
            #the particular columns which are passed from the test cases. In addition to these columns, each
            #sublist should consist of tconst values which are used to identify each column uniquely.
            #At the end of sorting all the rows in the dataset by using any algorithm you need to
