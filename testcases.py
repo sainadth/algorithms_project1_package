@@ -1,16 +1,18 @@
-from sorting_algos import sorting_algorithms
+from sorting_algos import sorting_algorithms, data_filtering
 import json
 
 total=0
 f=0
 
-with open("Output.json", "r") as file:
+with open("Sorting_Algorithms/Output.json", "r") as file:
     data = json.load(file)
 
 def testcase_1_1():
     global total
     global f
     sorted_testcase_1_1 = sorting_algorithms("testcases_1_2_df.csv", ['startYear'], 1)
+    # print(data["testcase_1_1"][1])
+    # print(sorted_testcase_1_1[1])
     if(data["testcase_1_1"][1]==sorted_testcase_1_1[1]):
         print("TestCase 1_1 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_1_1[0]))
     else:
@@ -25,6 +27,8 @@ def testcase_1_2():
     global total
     global f
     sorted_testcase_1_2 =  sorting_algorithms("testcases_1_2_df.csv", ['averageRating'], 1)
+    # print(data["testcase_1_2"][1])
+    # print(sorted_testcase_1_2[1])
     if(data["testcase_1_2"][1]==sorted_testcase_1_2[1]):
         print("\nTestCase 1_2 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_1_2[0]))
     else:
@@ -38,6 +42,8 @@ def testcase_1_3():
     global total
     global f
     sorted_testcase_1_3 = sorting_algorithms("testcases_1_2_df.csv", ['primaryTitle'], 1)
+    # print(data["testcase_1_3"][1])
+    # print(sorted_testcase_1_3[1])
     if(data["testcase_1_3"][1]==sorted_testcase_1_3[1]):
         print("\nTestCase 1_3 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_1_3[0]))
     else:
@@ -51,6 +57,8 @@ def testcase_2_1():
     global total
     global f
     sorted_testcase_2_1 = sorting_algorithms("testcases_1_2_df.csv", ['startYear'], 2)
+    # print(data["testcase_2_1"][1])
+    # print(sorted_testcase_2_1[1])
     if(data["testcase_2_1"][1]==sorted_testcase_2_1[1]):
         print("\nTestCase 2_1 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_2_1[0]))
     else:
@@ -65,6 +73,8 @@ def testcase_2_2():
     global total
     global f
     sorted_testcase_2_2 = sorting_algorithms("testcases_1_2_df.csv", ['averageRating'], 2)
+    # print(data["testcase_2_2"][1])
+    # print(sorted_testcase_2_2[1])
     if(data["testcase_2_2"][1]==sorted_testcase_2_2[1]):
         print("\nTestCase 2_2 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_2_2[0]))
     else:
@@ -78,6 +88,8 @@ def testcase_2_3():
     global total
     global f
     sorted_testcase_2_3 = sorting_algorithms("testcases_1_2_df.csv", ['primaryTitle'], 2)
+    # print(data["testcase_2_3"][1])
+    # print(sorted_testcase_2_3[1])
     if(data["testcase_2_3"][1]==sorted_testcase_2_3[1]):
         print("\nTestCase 2_3 Passed and your Algorithm Time Complexity = {}".format(sorted_testcase_2_3[0]))
     else:
@@ -129,6 +141,8 @@ def testcase_4_1():
     global total
     global f
     testcase_4_1 = sorting_algorithms("imdb_dataset.csv", ['startYear'], 4)
+    print(data["testcase_4_1"][1])
+    print(testcase_4_1[1])
     if(data["testcase_4_1"][1]==testcase_4_1[1]):
         print("\nTestCase 4_1 Passed and your Algorithm Time Complexity = {}".format(testcase_4_1[0]))
     else:
@@ -577,51 +591,55 @@ def testcase_12_2():
     return testcase_12_2
 ################
 testcase = {}
-testcase['testcase_1_1'] = testcase_1_1()
-testcase['testcase_1_2'] = testcase_1_2()
-testcase['testcase_1_3'] = testcase_1_3()
-testcase['testcase_2_1'] = testcase_2_1()
-testcase['testcase_2_2'] = testcase_2_2()
-testcase['testcase_2_3'] = testcase_2_3()
-testcase['testcase_3_1'] = testcase_3_1()
-testcase['testcase_3_2'] = testcase_3_2()
-testcase['testcase_3_3'] = testcase_3_3()
-testcase['testcase_4_1'] = testcase_4_1()
-testcase['testcase_4_2'] = testcase_4_2()
-testcase['testcase_4_3'] = testcase_4_3()
-testcase['testcase_5_1'] = testcase_5_1()
-testcase['testcase_5_2'] = testcase_5_2()
-testcase['testcase_5_3'] = testcase_5_3()
-testcase['testcase_6_1'] = testcase_6_1()
-testcase['testcase_6_2'] = testcase_6_2()
-testcase['testcase_6_3'] = testcase_6_3()
-testcase['testcase_7_1'] = testcase_7_1()
-testcase['testcase_7_2'] = testcase_7_2()
-testcase['testcase_7_3'] = testcase_7_3()
-testcase['testcase_7_4'] = testcase_7_4()
-testcase['testcase_7_5'] = testcase_7_5()
-testcase['testcase_7_6'] = testcase_7_6()
-testcase['testcase_8_1'] = testcase_8_1()
-testcase['testcase_8_2'] = testcase_8_2()
-testcase['testcase_8_3'] = testcase_8_3()
-testcase['testcase_8_4'] = testcase_8_4()
-testcase['testcase_8_5'] = testcase_8_5()
-testcase['testcase_8_6'] = testcase_8_6()
-testcase['testcase_9_1'] = testcase_9_1()
-testcase['testcase_9_2'] = testcase_9_2()
-testcase['testcase_9_3'] = testcase_9_3()
-testcase['testcase_9_4'] = testcase_9_4()
-testcase['testcase_9_5'] = testcase_9_5()
-testcase['testcase_9_6'] = testcase_9_6()
-testcase['testcase_10_1'] = testcase_10_1()
-testcase['testcase_10_2'] = testcase_10_2()
-testcase['testcase_10_3'] = testcase_10_3()
-testcase['testcase_10_4'] = testcase_10_4()
-testcase['testcase_10_5'] = testcase_10_5()
-testcase['testcase_10_6'] = testcase_10_6()
-testcase['testcase_11_1'] = testcase_11_1()
-testcase['testcase_11_2'] = testcase_11_2()
-testcase['testcase_12_1'] = testcase_12_1()
-testcase['testcase_12_2'] = testcase_12_2()
+# data_filtering("imdb_dataset.csv", 1)
+# data_filtering("imdb_dataset.csv", 2)
+# data_filtering("imdb_dataset.csv", 3)
+# data_filtering("imdb_dataset.csv", 4)
+# testcase['testcase_1_1'] = testcase_1_1()
+# testcase['testcase_1_2'] = testcase_1_2()
+# testcase['testcase_1_3'] = testcase_1_3()
+# testcase['testcase_2_1'] = testcase_2_1()
+# testcase['testcase_2_2'] = testcase_2_2()
+# testcase['testcase_2_3'] = testcase_2_3()
+# testcase['testcase_3_1'] = testcase_3_1()#failed
+# testcase['testcase_3_2'] = testcase_3_2()#failed
+# testcase['testcase_3_3'] = testcase_3_3()#failed
+# testcase['testcase_4_1'] = testcase_4_1()
+# testcase['testcase_4_2'] = testcase_4_2()
+# testcase['testcase_4_3'] = testcase_4_3()#failed
+# testcase['testcase_5_1'] = testcase_5_1()
+# testcase['testcase_5_2'] = testcase_5_2()
+# testcase['testcase_5_3'] = testcase_5_3()#failed
+# testcase['testcase_6_1'] = testcase_6_1()
+# testcase['testcase_6_2'] = testcase_6_2()
+# testcase['testcase_6_3'] = testcase_6_3()#failed
+# testcase['testcase_7_1'] = testcase_7_1()
+# testcase['testcase_7_2'] = testcase_7_2()#failed
+# testcase['testcase_7_3'] = testcase_7_3()#failed
+# testcase['testcase_7_4'] = testcase_7_4()#failed
+# testcase['testcase_7_5'] = testcase_7_5()
+# testcase['testcase_7_6'] = testcase_7_6()
+# testcase['testcase_8_1'] = testcase_8_1()
+# testcase['testcase_8_2'] = testcase_8_2()#failed
+# testcase['testcase_8_3'] = testcase_8_3()#failed
+# testcase['testcase_8_4'] = testcase_8_4()#failed
+# testcase['testcase_8_5'] = testcase_8_5()
+# testcase['testcase_8_6'] = testcase_8_6()
+# testcase['testcase_9_1'] = testcase_9_1()
+# testcase['testcase_9_2'] = testcase_9_2()#failed
+# testcase['testcase_9_3'] = testcase_9_3()#error
+# testcase['testcase_9_4'] = testcase_9_4()#failed
+# testcase['testcase_9_5'] = testcase_9_5()
+# testcase['testcase_9_6'] = testcase_9_6()
+# testcase['testcase_10_1'] = testcase_10_1()
+# testcase['testcase_10_2'] = testcase_10_2()#failed
+# testcase['testcase_10_3'] = testcase_10_3()#failed
+# testcase['testcase_10_4'] = testcase_10_4()
+# testcase['testcase_10_5'] = testcase_10_5()
+# testcase['testcase_10_6'] = testcase_10_6()
+# testcase['testcase_11_1'] = testcase_11_1()
+# testcase['testcase_11_2'] = testcase_11_2()
+# testcase['testcase_12_1'] = testcase_12_1()
+# testcase['testcase_12_2'] = testcase_12_2()
 
 print("\n\nTotal Test Cases Passed : {}\nTotal Test Cases Failed : {}".format(total-f,f))
